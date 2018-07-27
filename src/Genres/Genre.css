@@ -1,0 +1,10 @@
+.genre {
+    color: #55f;
+    display: inline-block;
+    height: 50px;
+    width: 100px;
+}
+
+.genre a {
+    cursor: pointer;
+}
