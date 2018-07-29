@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Person from './Person/Person';
 import './App.css';
 
-import Movie from './Movies/Movie';
-import Genre from './Genres/Genre';
+import Movie from './components/Movies';
+import Genre from './components/Genres';
 
 class App extends Component {
 
