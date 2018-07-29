@@ -8,36 +8,9 @@ import Genres from '../components/Genres';
 class App extends Component {
 
   state = {
-    persons: [
-      { id: 1, name: 'Wiston', age:35 },
-      { id: 2, name:'Diana', age:30 },
-      { id: 3, name:'Isaac', age:0 }
-    ],
     genres:[],
     movies:[],
-    showPersons: false
-  };
-
-  togglePersonsHandler = () => {
-    this.setState({showPersons: !this.state.showPersons});
-  }
-
-  nameChangedHandler = (event, personId) => {
-    this.setState({
-      persons: this.state.persons.map(p=>{
-        if (p.id===personId) {
-          p.name = event.target.value;
-        }
-        return p;
-      })
-    })
-  }
-
-  deletePersonHandler = (personIndex) => {
-    // const persons = this.state.persons.slice();
-    const persons =[...this.state.persons];
-    persons.splice(personIndex,1);
-    this.setState({persons});
+    currentGenre:null
   }
 
   componentDidMount = () => {
@@ -54,25 +27,31 @@ class App extends Component {
   handleGenreClicked = (genreId) => {
     let self = this;
     let query = api.URL+'/discover/movie?api_key='+api.KEY
-      +'&language=en-US&sort_by=vote_average.desc&vote_count.gte=200&page=1&release_date.gte=2000&with_genres='
+      +'&language=en-US&sort_by=vote_average.desc&vote_count.gte=3000&page=1&release_date.gte=2000&with_genres='
       +genreId;
     console.log('using URL: '+query);
     fetch(query)
     .then( response => response.json() )
     .then( json => {
       console.log(json);
-      let movies= json.results;
-      self.setState({movies})
+      let movies = json.results;
+      let currentGenre = self.state.genres.find(g => g.id ===genreId);
+      self.setState({movies, currentGenre})
     });
   }
 
   render() {
+    let searchActive=null;
+    if (this.state.currentGenre!==null) {
+      searchActive=<p>Showing results for {this.state.currentGenre.name}</p>
+    }
     return (
       <div className="App">
         <h1>React TMDB Example</h1>
         <hr />
         <Genres genres={this.state.genres} clicked={this.handleGenreClicked} />
         <hr />
+        {searchActive}
         <Movies movies={this.state.movies} />
       </div>
     );
