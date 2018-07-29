@@ -6,11 +6,21 @@ const movie = (props) => {
     let imgSrc = 'https://image.tmdb.org/t/p/w92'+props.src;
     return (
         <div className="movie">
-            <h3>{props.title}</h3>
-            <b>Description:</b>
+            <div className="movie-header">
+                <h3>{props.title}</h3>
+            </div>
             <br style={brStyle} />
-            <img src={imgSrc} alt='movie poster'/>
-            <p>{props.description}</p>
+            <div className="movie-body">
+                <div className="description">
+                    <b>Score: </b>{props.average}
+                    <b> Votes: </b>{props.votes}
+                    <b> Description:</b>
+                </div>
+                <div>
+                    <img src={imgSrc} alt='movie poster not available'/>
+                    <p>{props.description}</p>
+                </div>
+            </div>
         </div>
     );
 }
