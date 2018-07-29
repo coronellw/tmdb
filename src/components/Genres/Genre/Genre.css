@@ -1,10 +1,14 @@
 .genre {
     color: #55f;
+    font-weight: bold;
+    font-size: 23px;
     display: inline-block;
-    height: 50px;
-    width: 100px;
+    margin: 5px 10px;
+    /*width: 100px;*/
 }
 
 .genre a {
     cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

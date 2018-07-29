@@ -51,12 +51,13 @@ class App extends Component {
       } );
   }
 
-  handleGenreClicked = (queryByGenre) => {
+  handleGenreClicked = (genreId) => {
     let self = this;
-    let url= api.URL+'/search/movie?api_key='+api.KEY;
-    let query = '&query='+queryByGenre+'&page=1';
-    console.log('using URL: '+url+query);
-    fetch(url+query)
+    let query = api.URL+'/discover/movie?api_key='+api.KEY
+      +'&language=en-US&sort_by=vote_average.desc&vote_count.gte=200&page=1&release_date.gte=2000&with_genres='
+      +genreId;
+    console.log('using URL: '+query);
+    fetch(query)
     .then( response => response.json() )
     .then( json => {
       console.log(json);
@@ -66,26 +67,13 @@ class App extends Component {
   }
 
   render() {
-
-    const buttonStyle = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
-
     return (
       <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <button style={buttonStyle}
-          onClick={ () => this.togglePersonsHandler() }>Toggle Persons</button>
+        <h1>React TMDB Example</h1>
         <hr />
         <Genres genres={this.state.genres} clicked={this.handleGenreClicked} />
         <hr />
         <Movies movies={this.state.movies} />
-
       </div>
     );
   }

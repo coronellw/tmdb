@@ -4,9 +4,11 @@ import Movie from './Movie/Movie'
 const movies = (props) => props.movies.map( m => {
 	return <Movie
 		key={m.id}
-		title={m.original_title} 
-		description={m.overview}
 		src={m.poster_path}
+		votes={m.vote_count}
+		title={m.original_title}
+		average={m.vote_average}
+		description={m.overview}
 	/>
 })
 
