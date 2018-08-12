@@ -4,10 +4,13 @@ import './Movie.css'
 
 const movie = (props) => {
     let brStyle = {clear: 'both'};
-    let imgSrc = svgImg;
-    if(props.src){
-        imgSrc = 'https://image.tmdb.org/t/p/w92'+props.src;
+    let imgSrc = props.src ? 'https://image.tmdb.org/t/p/w92'+props.src:svgImg;
+
+    let getDateFrom = (d) => {
+        let date = new Date(d);
+        return date.getFullYear();
     }
+
     return (
         <div className="movie">
             <div className="movie-header">
@@ -18,6 +21,7 @@ const movie = (props) => {
                 <div className="description">
                     <b>Score: </b>{props.average||0}
                     <b> Votes: </b>{props.votes||0}
+                    <b> Released: </b>{getDateFrom(props.release_date)}
                     <br />
                     <b> Description:</b>
                 </div>

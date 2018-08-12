@@ -1,4 +1,6 @@
 .movie {
+    box-sizing: border-box;
+    background: linear-gradient(to right, #c6c6c6,black);
     display: inline-block;
     height: 200px;
     margin: 5px 10px;
@@ -6,6 +8,8 @@
     position: relative;
     overflow-y: hidden;
     width: 40%;
+    border: 1px solid white;
+    border-radius: 0px 120px 0 120px;
 }
 
 .movie .movie-header h3 {
@@ -25,9 +29,12 @@
     font-size: 0.9em;
     font-style: italic;
     text-align: left;
-    line-clamp: 3;
-    overflow-y: scroll;
+    /* line-clamp: 3; */
+    overflow-y: auto;
     text-overflow: ellipsis;
+    margin:0;
+    border:0;
+    padding:0;
     /* white-space: nowrap; */
 }
 

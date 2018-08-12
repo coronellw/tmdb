@@ -9,6 +9,7 @@ const movies = (props) => props.movies.map( m => {
 		title={m.original_title}
 		average={m.vote_average}
 		description={m.overview}
+		release_date={m.release_date}
 	/>
 })
 
