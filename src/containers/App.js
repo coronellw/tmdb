@@ -82,7 +82,7 @@ class App extends Component {
     if (this.state.currentGenre !== null) {
       searchActive = <SearchControl 
         votes = {this.state.sort.vote_count}
-        sort_by = {this.state.sort.sort_by}
+        sortBy = {this.state.sort.sort_by}
         genre={this.state.currentGenre}
         year={this.state.sort.release_date}
         orderChanged={this.changeOrderByHandler}
@@ -97,7 +97,7 @@ class App extends Component {
         <Genres genres={this.state.genres} clicked={this.genreClickedHandler} />
 
         {searchActive}
-        <Movies movies={this.state.movies} />
+        <Movies movies={this.state.movies} genres={this.state.genres} />
       </div>
     );
   }

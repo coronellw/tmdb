@@ -9,6 +9,7 @@ const movies = (props) => props.movies.map( m => {
 		title={m.original_title}
 		average={m.vote_average}
 		description={m.overview}
+		movie_genres= {props.genres.filter(g => m.genre_ids.includes(g.id))}
 		release_date={m.release_date}
 	/>
 })

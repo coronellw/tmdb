@@ -1,0 +1,73 @@
+.release_date {
+    /* background:rgba(35,210,110,.8); */
+    background:rgba(0,0,0,.6);
+    border-radius: 0 0 5px 5px;
+    color: #cacaca;
+    font-size: .7em;
+    font-weight: bold;
+    left:5px;
+    padding: 0 5px 4px 5px;
+    position: absolute;
+    top: 0;
+}
+
+.release_date::after {
+    content:'released';
+    text-transform: capitalize;
+    display: block;
+    font-size: .6em;
+}
+
+.votes {
+    display: block;
+    color: green;
+    position: absolute;
+    right: 12%;
+    text-shadow: 4px 4px 6px #000;
+    top: 2px;
+}
+
+.fa-icon {
+    display: block;
+}
+
+.value {
+    font-size: .6em;
+    margin: 0 auto;
+    text-shadow: 4px 4px 6px #000;
+}
+
+.score {
+    color:red;
+    position: absolute;
+    right: 5%;
+    text-shadow: 2px 2px 3px #000;
+    top: 2px;
+}
+
+.movie_genres {
+    background-color: rgba(0,0,0,.6);
+    bottom: 0;
+    border-radius: 0 5px 5px 0;
+    color: white;
+    clear: both;
+    display: inline-block;
+    font-size: .6em;
+    left: 0;
+    /* padding: 0 20px; */
+    position: absolute;
+    text-align: center;
+    width:80%;
+}
+
+.movie_genres li {
+    list-style: none;
+    display: inline-block;
+    padding: 1px 5px;
+}
+
+span.genre {
+    margin: 0 auto;
+    display: inline;
+    padding: 2px 5px;
+}

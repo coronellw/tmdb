@@ -35,7 +35,7 @@ const searchControl = (props) => {
                 }
             </select>
             <label> Order by: </label>
-            <select value={props.sort_by} onChange={props.orderChanged} >
+            <select value={props.sortBy} onChange={props.orderChanged} >
                 {options.map(o => {
                     return <option key={o.value} value={o.value}>{o.display}</option>
                 })}
