@@ -1,4 +1,5 @@
 import React from 'react';
+import CustomSelect from '../../UI/CustomSelect';
 
 const searchControl = (props) => {
     let options = [{value: "popularity.asc", display: "Popularity asc"},
@@ -14,14 +15,19 @@ const searchControl = (props) => {
     {value: "vote_average.asc", display: "Vote Average asc"},
     {value: "vote_average.desc", display: "Vote Average desc"},
     {value: "vote_count.asc", display: "Vote Count asc"},
-    {value: "vote_count.desc", display: "Vote count desc"}]
+    {value: "vote_count.desc", display: "Vote count desc"}];
+    
+    let getDateFrom = (d) => {
+        let date = new Date(d);
+        return date.getFullYear();
+    }
 
     return (
         <div className="SearchControl">
             <p>Showing results for <strong>{props.genre.name}</strong></p>
             <label>Votes: </label>
             <select
-                value={props.votes}
+                value={props.search.vote_count}
                 onChange={props.voteChanged}
             >
                 {
@@ -35,26 +41,22 @@ const searchControl = (props) => {
                 }
             </select>
             <label> Order by: </label>
-            <select value={props.sortBy} onChange={props.orderChanged} >
+            <select value={props.search.sortBy} onChange={props.orderChanged} >
                 {options.map(o => {
                     return <option key={o.value} value={o.value}>{o.display}</option>
                 })}
             </select>
-            <label> Release year: </label>
-            <select
-                value={props.year}
-                onChange={props.yearChanged}
-            >
-                {
+            <CustomSelect 
+                value={getDateFrom(props.search.release_date)}
+                customStyle={["black","rounded"]}
+                label={"Release year"}
+                changed={props.yearChanged}
+                options={
                     [...Array(50)].map((_,index) => {
-                        return <option 
-                            key={2018-index}
-                            value={2018-index}>
-                                {2018-index}
-                            </option>
+                        return {value:(2018-index),display: (2018-index)}
                     })
                 }
-            </select>
+            />
         </div>
     );
 }
