@@ -22,7 +22,7 @@ const movie = (props) => {
                 <MovieDetails
                     votes={props.votes}
                     average={props.average}
-                    release_date={props.release_date}
+                    releaseDate={props.release_date}
                     genres={props.movie_genres}
                 />
                 <div>

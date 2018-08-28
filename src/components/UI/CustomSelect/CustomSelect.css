@@ -1,17 +1,9 @@
-.flex-container{
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
 .CustomSelect {
     background: url('../../../assets/img/arrow_select_opt1.png') no-repeat 96% 0;
     border: 1px solid #55f;
     display: inline-block;
     height: 29px;
-    margin: 0 20px;
+    margin: 5px 20px;
 	overflow: hidden;
 	width: 240px;
 }

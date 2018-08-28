@@ -1,31 +1,40 @@
-import React from 'react';
-import './CustomSelect.css'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './CustomSelect.css';
 
-const customSelect = (props) => {
-    let label = props.label ? <label>{props.label}:</label> : null;
-    let classes = Array.isArray(props.customStyle) ? props.customStyle.join(' ') : null;
-    let options = Array.isArray(props.options) ? props.options : [];
-    if (classes) {
-        classes += " CustomSelect";
-    }
+class CustomSelect extends Component {
 
-    return (
-        <div className="flex-container">
-            {label}
-            <div className={classes}>
-                <select
-                    value={props.value}
-                    onChange={props.changed}
-                >
-                    {
-                        options.map(opt => {
-                            return <option value={opt.value} key={opt.value} >{opt.display}</option>
-                        })
-                    }
-                </select>
+    render(){ 
+        let label = this.props.label ? <label>{this.props.label}:</label> : null;
+        let options = Array.isArray(this.props.options) ? this.props.options : [];
+        let classes = Array.isArray(this.props.customStyle) ? this.props.customStyle.join(' ') : null;
+
+        if (classes) {
+            classes += " CustomSelect";
+        }
+    
+        return(
+            <div className="flex-container">
+                <div className={classes} style={{width: this.props.width ?this.props.width +'px':'240px'}}>
+                    <select
+                        value={this.props.value}
+                        onChange={this.props.changed}
+                        style={{width: this.props.width? this.props.width+28+'px':'268px'}}
+                    >
+                        {
+                            options.map(opt => {
+                                return <option value={opt.value} key={opt.value} >{opt.display}</option>
+                            })
+                        }
+                    </select>
+                </div>
             </div>
-        </div>
-    );
+        )
+    }
 }
 
-export default customSelect;
+CustomSelect.propTypes = {
+    width: PropTypes.number.isRequired
+}
+
+export default CustomSelect;

@@ -1,4 +1,4 @@
-.release_date {
+.releaseDate {
     /* background:rgba(35,210,110,.8); */
     background:rgba(0,0,0,.6);
     border-radius: 0 0 5px 5px;
@@ -11,7 +11,7 @@
     top: 0;
 }
 
-.release_date::after {
+.releaseDate::after {
     content:'released';
     text-transform: capitalize;
     display: block;

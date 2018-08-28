@@ -17,8 +17,8 @@ const movieDetails = (props) => {
             <FontAwesomeIcon className="fa-icon" icon={faChartLine} /> 
             <span className="value">{props.votes || 0}</span>
         </span>
-        <span className="release_date">
-            {getDateFrom(props.release_date)}
+        <span className="releaseDate">
+            {getDateFrom(props.releaseDate)}
         </span>
         <ul className="movie_genres">
             {props.genres.map(g => <li key={g.id} className="none">{g.name}</li>)}
