@@ -9,6 +9,12 @@
     position: relative;
 }
 
+.movie a,
+.movie a:visited {
+    color: #ddd;
+    text-decoration: none;
+}
+
 .movie .movie-header h3 {
     color: #0073e5;
     padding-top: 20px;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import MovieDetails from '../MovieDetails';
 import svgImg from '../../../assets/img/No_image_available.svg';
 import './Movie.css'
@@ -14,22 +15,29 @@ const movie = (props) => {
 
     return (
         <div className="movie" style={cardStyle}>
-            <div className="movie-header">
-                <h3>{props.title}</h3>
-            </div>
-            <br style={brStyle} />
-            <div className="movie-body">
-                <MovieDetails
-                    votes={props.votes}
-                    average={props.average}
-                    releaseDate={props.release_date}
-                    genres={props.movie_genres}
-                />
-                <div>
-                    {/* <b> Description:</b> */}
-                    <p>{props.description}</p>
+            <Link to={{
+                pathname: "/movie/" + props.movie.id,
+                params: {
+                    movie: props.movie
+                }
+            }}>
+                <div className="movie-header">
+                    <h3>{props.title}</h3>
                 </div>
-            </div>
+                <br style={brStyle} />
+                <div className="movie-body">
+                    <MovieDetails
+                        votes={props.votes}
+                        average={props.average}
+                        releaseDate={props.releaseDate}
+                        genres={props.movieGenres}
+                    />
+                    <div>
+                        {/* <b> Description:</b> */}
+                        <p>{props.description}</p>
+                    </div>
+                </div>
+            </Link>
         </div>
     );
 }

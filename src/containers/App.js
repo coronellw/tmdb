@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import axios from '../axios';
 import _ from 'lodash';
 import './App.css';
 
 import Movies from '../components/Movies';
+import FullMovie from '../components/Movies/FullMovie/FullMovie';
 import SearchControl from '../components/Movies/SearchControl';
 
 class App extends Component {
@@ -32,13 +34,11 @@ class App extends Component {
   }
 
   fetchMovies = () => {
-    console.log('[App.js] State: ', this.state);
-
     axios.get('/discover/movie', {
       params: {
         language: this.state.search.language,
         sort_by: this.state.search.sortBy,
-        "vote_gount.gte": this.state.search.voteCount,
+        "vote_count.gte": this.state.search.voteCount,
         page: this.state.search.page,
         "primary_release_date.gte": this.state.search.releaseDate,
         with_genres: this.state.search.withGenres,
@@ -47,15 +47,14 @@ class App extends Component {
       let movies = response.data.results;
       let currentGenre = _.find(this.state.genres, { id: parseInt(this.state.currentGenre.id, 10) });
       this.setState({ movies, currentGenre });
-    }).catch(error => alert('There was an error'));
+      this.props.history.push('/')
+    }).catch(error => console.log('[fetchingMovies] There was an error', error));
   }
 
   changeGenreHandler = (genreId) => {
     let search = this.state.search;
     search.withGenres = genreId;
     let currentGenre = _.find(this.state.genres, { id: parseInt(genreId, 10) })
-    console.log('[changeGenreHandler] Found genre ', currentGenre);
-    
     this.setState({ search, currentGenre })
     this.fetchMovies();
   }
@@ -95,10 +94,14 @@ class App extends Component {
           yearChanged={this.yearChangedHandler}
           voteChanged={this.changeVoteCountHandler}
         />
-        <Movies movies={this.state.movies} genres={this.state.genres} />
+        <Switch>
+          <Route path="/" exact render={() => <Movies movies={this.state.movies} genres={this.state.genres} />} />
+          <Route path="/movie/:id" component={FullMovie} />
+          <Route render={() => <h1>Page not found!!!</h1>} />
+        </Switch>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
