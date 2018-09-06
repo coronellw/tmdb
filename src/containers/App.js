@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../axios';
 import _ from 'lodash';
 import './App.css';
 
-import * as api from '../assets/config'
 import Movies from '../components/Movies';
 import SearchControl from '../components/Movies/SearchControl';
 
@@ -12,7 +11,7 @@ class App extends Component {
   state = {
     genres: [],
     movies: [],
-    currentGenre: {id:28, name:'Action'},
+    currentGenre: { id: 28, name: 'Action' },
     search: {
       language: 'en-US',
       sortBy: 'vote_average.desc',
@@ -24,8 +23,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    let query = api.URL + '/genre/movie/list?api_key=' + api.KEY;
-    axios.get(query)
+    axios.get('/genre/movie/list')
       .then(response => {
         if (response.data.genres) {
           this.setState({ genres: response.data.genres });
@@ -33,42 +31,42 @@ class App extends Component {
       });
   }
 
-  genreClickedHandler = (genreId) => {
-    let query = api.URL + '/discover/movie?api_key=' + api.KEY
-      + '&language=' + this.state.search.language
-      + '&sort_by=' + this.state.search.sortBy
-      + '&vote_count.gte=' + this.state.search.voteCount
-      + '&page=' + this.state.search.page
-      + '&primary_release_date.gte=' + this.state.search.releaseDate
-      + '&with_genres=' + genreId;
-
-    axios.get(query)
-      .then(response => {
-        let movies = response.data.results;
-        let currentGenre = _.find(this.state.genres, { id: parseInt(genreId,10) });        
-        this.setState({ movies, currentGenre });
-      });
+  fetchMovies = () => {
+    axios.get('/discover/movie', {
+      params: {
+        language: this.state.search.language,
+        sort_by: this.state.search.sortBy,
+        "vote_gount.gte": this.state.search.voteCount,
+        page: this.state.search.page,
+        "primary_release_date.gte": this.state.search.releaseDate,
+        with_genres: this.state.currentGenre.id,
+      }
+    }).then(response => {
+      let movies = response.data.results;
+      let currentGenre = _.find(this.state.genres, { id: parseInt(this.state.currentGenre.id, 10) });
+      this.setState({ movies, currentGenre });
+    }).catch(error => alert('There was an error'));
   }
 
   changeVoteCountHandler = (event) => {
     let search = this.state.search;
     search.voteCount = event.target.value;
     this.setState({ search })
-    this.genreClickedHandler(this.state.currentGenre.id);
+    this.fetchMovies();
   }
 
   yearChangedHandler = (event) => {
     let search = this.state.search;
     search.releaseDate = event.target.value;
     this.setState({ search })
-    this.genreClickedHandler(this.state.currentGenre.id);
+    this.fetchMovies();
   }
 
   changeOrderByHandler = (event) => {
     let search = this.state.search;
     search.sortBy = event.target.value;
     this.setState({ search })
-    this.genreClickedHandler(this.state.currentGenre.id);
+    this.fetchMovies();
   }
 
   render() {
@@ -80,7 +78,7 @@ class App extends Component {
           search={this.state.search}
           genre={this.state.currentGenre}
           genres={this.state.genres}
-          genreChanged={this.genreClickedHandler}
+          genreChanged={this.fetchMovies}
           orderChanged={this.changeOrderByHandler}
           yearChanged={this.yearChangedHandler}
           voteChanged={this.changeVoteCountHandler}
