@@ -8,7 +8,7 @@ const movieDetails = (props) => {
         let date = new Date(d);
         return date.getFullYear();
     }
-    return (<div>
+    return (<div className="MovieDetails">
         <span className="score">
             <FontAwesomeIcon className="fa-icon" icon={faHeart} />
             <span className="value">{props.average || 0}</span>

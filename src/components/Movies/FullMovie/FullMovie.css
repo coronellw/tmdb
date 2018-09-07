@@ -1,3 +1,79 @@
 .FullMovie {
     float: left;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.FullMovie h1 {
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.FullMovie ul {
+    list-style: none;
+}
+
+.FullMovie ul li{
+    display: block;
+    padding: 2px;
+    overflow: auto;
+}
+
+.FullMovie ul li img {
+    float: left;
+    margin-right: 10px;
+}
+.FullMovie ul li p{
+    border: 0;
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.FullMovie label {
+    color: #fff;
+    font-weight: bold;
+}
+
+.FullMovie img.main {
+    border-radius: 15px;
+    float: left;
+    margin-right: 20px;
+}
+
+.FullMovie > div {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.FullMovie .content {
+    background: rgba(0,0,0,.7);
+    border-radius: 20px;
+    overflow: auto;
+    padding: 15px;
+    text-align: left;
+}
+
+.FullMovie .fa-icon {
+    padding-right: 10px;
+}
+.FullMovie .detail {
+    padding: 5px 10px;
+}
+
+.FullMovie .popularity {
+    color: green;
+}
+
+.FullMovie .score {
+    color: rgb(255, 136, 0);
+}
+
+.FullMovie .votes {
+    color: #f00;
+}
+
+.FullMovie .Information {
+    margin-top: 5px;
 }

@@ -1,4 +1,4 @@
-.releaseDate {
+.MovieDetails .releaseDate {
     /* background:rgba(35,210,110,.8); */
     background:rgba(0,0,0,.6);
     border-radius: 0 0 5px 5px;
@@ -11,14 +11,14 @@
     top: 0;
 }
 
-.releaseDate::after {
+.MovieDetails .releaseDate::after {
     content:'released';
     text-transform: capitalize;
     display: block;
     font-size: .6em;
 }
 
-.votes {
+.MovieDetails .votes {
     display: block;
     color: green;
     position: absolute;
@@ -27,17 +27,17 @@
     top: 2px;
 }
 
-.fa-icon {
+.MovieDetails .fa-icon {
     display: block;
 }
 
-.value {
+.MovieDetails .value {
     font-size: .6em;
     margin: 0 auto;
     text-shadow: 4px 4px 6px #000;
 }
 
-.score {
+.MovieDetails .score {
     color:red;
     position: absolute;
     right: 5%;
@@ -45,7 +45,7 @@
     top: 2px;
 }
 
-.movie_genres {
+.MovieDetails .movie_genres {
     background-color: rgba(0,0,0,.6);
     bottom: 0;
     border-radius: 0 5px 5px 0;
@@ -60,13 +60,13 @@
     width:80%;
 }
 
-.movie_genres li {
+.MovieDetails .movie_genres li {
     list-style: none;
     display: inline-block;
     padding: 1px 5px;
 }
 
-span.genre {
+.MovieDetails span.genre {
     margin: 0 auto;
     display: inline;
     padding: 2px 5px;
