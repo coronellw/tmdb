@@ -10,7 +10,9 @@ class FullMovie extends Component {
     state = {
         movie: null,
         cast: [],
+        related: [],
         showCast: false,
+        showRelated: false,
     }
     componentDidMount() {
         if (this.props.location.params) {
@@ -36,12 +38,38 @@ class FullMovie extends Component {
             })
     }
 
+    showRelatedHandler = () => {
+        axios.get('/movie/' + this.state.movie.id + '/similar')
+            .then(response => {
+                console.log('[FullMovie]', response);
+                this.setState({
+                    related: response.data.results,
+                    showRelated: true,
+                })
+            })
+    }
+
     render() {
         let title = null;
         let background = null;
+        let similarMovies = (
+            <ul>
+                {this.state.related.slice(0, 6).map(r => {
+                    return (
+                        <li>
+                            <p>
+                                <img src={'https://image.tmdb.org/t/p/w92' + r.poster_path} alt={r.title} />
+                                {r.title}
+                            </p>
+                        </li>
+                    )
+                })}
+                <button>Show full list</button>
+            </ul>
+        );
         let cast = (
             <ul>
-                {this.state.cast.map(c => {
+                {this.state.cast.slice(0, 9).map(c => {
                     if (c.profile_path) {
                         return (
                             <li>
@@ -54,6 +82,7 @@ class FullMovie extends Component {
                     }
                     return null;
                 })}
+                <button>Show full list</button>
             </ul>
         );
         if (this.state.movie) {
@@ -82,10 +111,17 @@ class FullMovie extends Component {
                                 {this.state.movie.vote_count}
                             </span>
                             <br />
+
                             {!this.state.showCast ? <button
                                 className="Information"
                                 onClick={this.showCastHandler}
                             >Show cast</button> : cast}
+
+                            {!this.state.showRelated ? <button
+                                className="Warning"
+                                onClick={this.showRelatedHandler}
+                            >Show related movies
+                            </button> : similarMovies}
                         </div>
                     </div>
                 </div>
