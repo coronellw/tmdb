@@ -49,26 +49,35 @@ class FullMovie extends Component {
             })
     }
 
+    loadMovie = (id) => {
+        axios.get('/movie/' + id)
+            .then(response => {
+                this.setState({ movie: response.data, showRelated: false, showCast: false })
+            })
+            .catch(error => {
+                console.log('[FullMovie] We got an error', error);
+            })
+    }
+
     render() {
         let title = null;
         let background = null;
         let similarMovies = (
-            <ul>
-                {this.state.related.slice(0, 6).map(r => {
+            <ul className="movies">
+                {this.state.related.slice(0, 7).map(r => {
                     return (
-                        <li>
-                            <p>
-                                <img src={'https://image.tmdb.org/t/p/w92' + r.poster_path} alt={r.title} />
-                                {r.title}
-                            </p>
+                        <li onClick={() => this.loadMovie(r.id)}>
+                            <img src={'https://image.tmdb.org/t/p/w92' + r.poster_path} alt={r.title} />
                         </li>
                     )
                 })}
-                <button>Show full list</button>
+                <li>
+                    <button>full list</button>
+                </li>
             </ul>
         );
         let cast = (
-            <ul>
+            <ul className="actors">
                 {this.state.cast.slice(0, 9).map(c => {
                     if (c.profile_path) {
                         return (
@@ -97,6 +106,10 @@ class FullMovie extends Component {
                             <label>Overview</label>
                             <p>
                                 {this.state.movie.overview}
+                            </p>
+                            <label>Release date:</label>
+                            <p>
+                                {this.state.movie.release_date}
                             </p>
                             <span className="detail votes">
                                 <FontAwesomeIcon className="fa-icon" icon={faHeart} />

@@ -40,6 +40,15 @@
     overflow: hidden;
 }
 
+.FullMovie ul.actors{
+    height: 240px;
+    overflow-y: scroll;
+}
+
+.FullMovie ul.movies li {
+    display: inline-block;
+}
+
 .FullMovie img.main {
     border-radius: 15px;
     float: left;
