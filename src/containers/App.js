@@ -52,7 +52,7 @@ class App extends Component {
   }
 
   changeGenreHandler = (genreId) => {
-    let search = this.state.search;
+    let search = {...this.state.search};
     search.withGenres = genreId;
     let currentGenre = _.find(this.state.genres, { id: parseInt(genreId, 10) })
     this.setState({ search, currentGenre })
@@ -60,21 +60,21 @@ class App extends Component {
   }
 
   changeVoteCountHandler = (event) => {
-    let search = this.state.search;
+    let search = {...this.state.search};
     search.voteCount = event.target.value;
     this.setState({ search })
     this.fetchMovies();
   }
 
   yearChangedHandler = (event) => {
-    let search = this.state.search;
+    let search = {...this.state.search};
     search.releaseDate = event.target.value;
     this.setState({ search })
     this.fetchMovies();
   }
 
   changeOrderByHandler = (event) => {
-    let search = this.state.search;
+    let search = {...this.state.search};
     search.sortBy = event.target.value;
     this.setState({ search })
     this.fetchMovies();
