@@ -14,7 +14,7 @@ window.store = store;
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter basename="/react-movies">
+        <BrowserRouter>
             <App />
         </BrowserRouter>
     </Provider>
