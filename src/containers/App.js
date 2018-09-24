@@ -5,6 +5,7 @@ import axios from '../axios';
 import './App.css';
 
 import Movies from '../components/Movies';
+import Person from '../components/Person/Person';
 import FullMovie from '../components/Movies/FullMovie/FullMovie';
 import SearchControl from '../components/Movies/SearchControl';
 
@@ -31,6 +32,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={Movies} />
           <Route path="/movie/:id" component={FullMovie} />
+          <Route path="/person/:id" component={Person} />
           <Route render={() => <h1>Page not found!!!</h1>} />
         </Switch>
       </div>

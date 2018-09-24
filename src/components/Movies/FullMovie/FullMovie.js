@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartLine, faHeart, faFire } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +13,7 @@ import {
     setSelectedMovie,
     saveMovieList,
     setSelectedMovieThroughId,
+    getMovieWithCastMember,
 } from '../../../store/actions/actionCreators';
 import noImgAvailable from '../../../assets/img/No_image_available.svg';
 
@@ -86,9 +88,11 @@ class FullMovie extends Component {
                     {this.props.cast.slice(0, this.getCastLimit()).map(c => {
                         if (c.profile_path) {
                             return (
-                                <li onClick={() => this.props.onActorClicked(c.id)} key={c.id}>
+                                <li key={c.id}>
                                     <p>
-                                        <img src={'https://image.tmdb.org/t/p/w45' + c.profile_path} alt={c.name} />
+                                        <Link to={'/person/' + c.id} onClick={() => this.props.onActorClicked(c.id)}>
+                                            <img src={'https://image.tmdb.org/t/p/w45' + c.profile_path} alt={c.name} />
+                                        </Link>
                                         {c.name} <strong>as</strong> {c.character}
                                     </p>
                                 </li>
@@ -172,6 +176,7 @@ const mapStateToProps = state => {
         movie: state.selectedMovie,
         related: state.movies,
         cast: state.cast,
+        actor: state.selectedActor
     }
 }
 
@@ -179,9 +184,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onShowCastClicked: () => dispatch(setCast()),
         onActorClicked: (id) => {
-            console.log('[FullMovie - onActorClicked] Setting actor with ID: ', id);
-
-            dispatch(setSelectedActorById(id))
+            dispatch(setSelectedActorById(id));
+            dispatch(getMovieWithCastMember(id));
         },
         onRelatedMoviesClicked: () => dispatch(getSimilarMovies()),
         onMovieSelected: (movie) => dispatch(setSelectedMovie(movie)),

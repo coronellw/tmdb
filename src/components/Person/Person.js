@@ -1,17 +1,54 @@
 import React from 'react';
-import './Person.css';
+import idGen from 'uuid/v4';
+import { connect } from 'react-redux';
+
+// import './Person.css';
+import {
+    setSelectedActorById,
+    getMovieWithCastMember,
+} from '../../store/actions/actionCreators'
 
 const person = (props) => {
     return (
         <div className="Person">
-           <span onClick={props.click}>x</span>            
+            <h1>{props.person.name}</h1>
+            <ul>
+                {
+                    props.person.also_known_as ?
+                        props.person.also_known_as.map(n => {
+                            return (<li key={idGen()}>{n}</li>)
+                        }) : null
+                }
+            </ul>
+            <span>DOB: {props.person.birthday}</span>
+            {
+                props.person.deathday ? <span>Dead: {props.person.deathday}</span> : null
+            }
+            <span>Place of Birth: {props.person.place_of_birth}</span>
             <p>
-                I'm <b>{props.name}</b> and I'm <b>{props.age}</b>.
+                {props.person.biography}
             </p>
-            <p>{props.children}</p>
-            <input type="text" onChange={props.changed} value={props.name}/>
+            <a target="_blank" href={'https://www.imdb.com/name/' + props.person.imdb_id}>IMDB page</a>
+            <button onClick={props.onRelatedMoviesClicked}>Show related movies</button>
+            {
+                props.movies.map(m => { return <p>{m.original_title}</p> })
+            }
         </div>
     );
 }
 
-export default person;
+const mapStateToProps = state => {
+    return {
+        person: state.selectedActor,
+        movies: state.movies
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onActorUpdate: (actorId) => { dispatch(setSelectedActorById(actorId)) },
+        onRelatedMoviesClicked: () => { dispatch(getMovieWithCastMember()) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(person);

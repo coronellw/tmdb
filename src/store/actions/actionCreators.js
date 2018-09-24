@@ -47,6 +47,17 @@ export function getSimilarMovies() {
     }
 }
 
+export function getMovieWithCastMember() {
+    return (dispatch, getState) => {
+        axios.get('/discover/movie', {
+            params: {
+                with_cast: getState().selectedActor.id
+            }
+        })
+            .then(resp => dispatch(saveMovieList(resp.data.results)))
+    }
+}
+
 export function setSelectedMovie(movie) {
     return {
         type: C.SET_SELECTED_MOVIE,
