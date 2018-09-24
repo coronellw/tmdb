@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions';
+import * as actionTypes from '../../actions';
 
 const initialState = {
     language: 'en-US',
@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SET_VOTE_COUNT:
             return {
                 ...state,
-                voteCount: action.payload.voteCount
+                voteCount: parseInt(action.payload.voteCount, 10)
             }
         case actionTypes.SET_PAGE:
             return {
@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SET_WITH_GENRE:
             return {
                 ...state,
-                withGenres: action.payload.withGenres
+                withGenres: parseInt(action.payload.withGenres, 10)
             }
         default:
             return state;

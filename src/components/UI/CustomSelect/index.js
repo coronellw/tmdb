@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import uuid from 'uuid/v4';
 import PropTypes from 'prop-types';
 import './CustomSelect.css';
 
 class CustomSelect extends Component {
 
     render(){ 
-        let label = this.props.label ? <label>{this.props.label}:</label> : null;
+        // let label = this.props.label ? <label>{this.props.label}:</label> : null;
         let options = Array.isArray(this.props.options) ? this.props.options : [];
         let classes = Array.isArray(this.props.customStyle) ? this.props.customStyle.join(' ') : null;
 
@@ -21,9 +22,10 @@ class CustomSelect extends Component {
                         onChange={this.props.changed}
                         style={{width: this.props.width? this.props.width+28+'px':'268px'}}
                     >
+                        <option value={undefined}> --- </option>
                         {
                             options.map(opt => {
-                                return <option value={opt.value} key={opt.value} >{opt.display}</option>
+                                return <option value={opt.value} key={uuid()} >{opt.display}</option>
                             })
                         }
                     </select>

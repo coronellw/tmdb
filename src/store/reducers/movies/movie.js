@@ -1,12 +1,12 @@
-import * as actionTypes from '../actions';
+import * as actionTypes from '../../actions';
 
 const initialState = {}
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.SET_SELECTED_GENRE:
-            return action.payload.genre
-        default:
+        case actionTypes.SET_SELECTED_MOVIE:
+            return action.payload.movie
+        default: 
             return state;
     }
 }

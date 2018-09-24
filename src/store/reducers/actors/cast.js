@@ -1,12 +1,13 @@
-import * as actionTypes from '../actions';
+import * as C from '../../actions';
 
 const initialState = []
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.SET_GENRES:
-            return action.payload.genres
+        case C.SET_CAST:
+            return action.payload.cast
         default:
-            return state;
+            return state
     }
 }
 

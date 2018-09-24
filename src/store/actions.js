@@ -13,3 +13,7 @@ export const SET_VOTE_COUNT = 'SET_VOTE_COUNT';
 export const SET_PAGE = 'SET_PAGE';
 export const SET_RELEASE_DATE = 'SET_RELEASE_DATE';
 export const SET_WITH_GENRE = 'SET_WITH_GENRE';
+
+//actors
+export const SET_SELECTED_ACTOR = 'SET_SELECTED_ACTOR';
+export const SET_CAST = 'SET_CAST';
