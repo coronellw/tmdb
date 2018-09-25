@@ -1,20 +1,37 @@
 .Person {
-    width: 60%;
-    margin: 16px auto;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 3px #ccc;
-    padding: 16px;
-    position: relative;
-    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
 }
 
-span{
-    background-color: #99f;
-    border: 1px solid #00f;
-    border-radius: 4px;
-    padding: 5px;
-    position: absolute;
-    right: 5px;
-    text-transform: uppercase;
-    top: 5px;
+.Person h1 {
+    background-color: rgba(125,125,125,.2);
+    border-radius: 0 15px 15px 0;
 }
+
+.Person label {
+    font-weight: bold;
+}
+
+.Person img.main{
+    border-radius: 15px;
+    float: left;
+    box-shadow: 5px 5px 8px #5e7680;
+    margin: 0 15px 15px 0;
+}
+
+.Person ul {
+    list-style: none;
+    text-align: left;
+    padding: 0;
+}
+
+.Person ul li {
+    display: inline-block;
+    margin: 3px;
+}
+
+.Person ul li img {
+    border-radius: 5px;
+}
+

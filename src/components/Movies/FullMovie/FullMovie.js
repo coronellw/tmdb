@@ -69,7 +69,11 @@ class FullMovie extends Component {
                     {this.props.related.slice(0, this.getRelatedMovieLimit()).map(r => {
                         return (
                             <li onClick={() => this.selectMovieHandler(r)} key={r.id}>
-                                <img src={'https://image.tmdb.org/t/p/w92' + r.poster_path} alt={r.title} />
+                                <img 
+                                    src={'https://image.tmdb.org/t/p/w92' + r.poster_path} 
+                                    alt={r.title} 
+                                    title={r.original_title}
+                                />
                             </li>
                         )
                     })}
