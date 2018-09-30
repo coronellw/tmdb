@@ -2,11 +2,39 @@
   text-align: center;
 }
 
+.App .MainTitle {
+  font-family: 'Fredoka One', 'Arial Narrow', Arial, sans-serif;
+}
+
+.MainText .project {
+  font-family: 'Fredoka One', cursive;
+}
+
+.MainText .author {
+  font-family: 'Dancing Script', cursive;
+}
+
 .Information {
   background-color: rgb(37, 37, 158);
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  padding: 5px 8px;
 }
 
 .Warning {
   background-color: rgb(233, 179, 4);
+  border-radius: 5px;
   color: black;
+  font-weight: bold;
+  padding: 5px 8px;
+}
+
+.imdb {
+  background-color: gold;
+  border-radius: 5px;
+  color: black;
+  font-family: 'Fredoka One';
+  padding: 5px 8px;
+  text-decoration: none;
 }

@@ -1,0 +1,96 @@
+.container {
+	font-family: 'Dancing Script', cursive;
+	margin: 0 auto;
+	padding-top: 50px;
+	position: relative;
+	width: 125px;
+}
+
+.clapper{
+	animation: open 1s infinite alternate ease-in;
+	border: 1px solid white;
+	box-shadow: 1px 1px 30px white;
+	height: 20px;
+	overflow: hidden;
+	width: 120px;
+}
+
+.clapper div[class*="stripe"]{
+	transform: skew(30deg);
+}
+
+.topSide {
+	border: 1px solid white;
+	box-shadow: 1px 1px 30px white;
+	height: 20px;
+	overflow: hidden;
+	width: 120px;
+}
+
+.topSide div[class*="stripe"]{
+	transform: skew(-30deg);
+}
+
+.bottomSide {
+	border: 1px solid white;
+	box-shadow: 1px 1px 30px white;
+	height: 60px;
+	overflow: hidden;
+	position: relative;
+	width: 120px;
+}
+
+.bottomSide .star {
+	/* padding-top: 13px; */
+	position: absolute;
+	top: 20%;
+    left: 32%;
+	animation: spin 2s infinite linear;
+}
+
+div[class*="stripe"]{
+	border: 1px solid white;
+	display: table-cell;
+	height: 18px;
+	width: 30px;
+	padding: 1px 0;
+	/*	transform: skew(-30deg);*/
+}
+
+div[class*="stripe"]:nth-of-type(even) {
+	background-color: white;
+}
+
+@keyframes open {
+	from {
+		/*background-color: red;*/
+		transform: rotateZ(0deg);
+		transform-origin: left bottom;
+	}
+	to {
+		/*background-color: blue;*/
+		transform: rotateZ(-30deg);
+		transform-origin: left bottom;
+	}
+}
+
+@keyframes spin {
+	0% {
+		color: black;
+		transform: rotate(0deg);
+		transform-origin: center initial;
+		left: -40%;
+	}
+	50% {
+		color: rgb(175,175,175);
+		transform: rotate(180deg);
+		transform-origin: center initial;
+		left: 30%;
+	}
+	100% {
+		color: gold;
+		left: 110%;
+		transform: rotate(360deg);
+		transform-origin: center initial;
+	}
+}

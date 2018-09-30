@@ -6,6 +6,8 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SET_SELECTED_MOVIE:
             return action.payload.movie
+        case actionTypes.FETCH_MOVIE_FULFILLED:
+            return action.payload.movie
         default: 
             return state;
     }

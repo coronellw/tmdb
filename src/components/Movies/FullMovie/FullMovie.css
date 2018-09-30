@@ -1,5 +1,4 @@
 .FullMovie {
-    float: left;
     margin: 20px auto;
     text-align: center;
 }
@@ -55,7 +54,7 @@
     margin-right: 20px;
 }
 
-.FullMovie > div {
+.FullMovie > div.content {
     margin: 0 auto;
     padding-top: 20px;
     width: 80%;

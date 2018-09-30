@@ -84,8 +84,9 @@ class person extends Component {
                     </p>
                     <p>
                         <a target="_blank"
+                            className="imdb"
                             href={'https://www.imdb.com/name/' + this.props.person.imdb_id} >
-                            IMDB page </a>
+                            IMDb</a>
                     </p>
                 </div>
                 {

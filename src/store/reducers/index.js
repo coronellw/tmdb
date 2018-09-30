@@ -7,6 +7,8 @@ import movie from './movies/movie';
 import search from './search/search';
 import actor from './actors/actors';
 import cast from './actors/cast';
+import error from './error/error';
+import loading from './loading/loading';
 
 export default combineReducers({
     genres: genres,
@@ -15,5 +17,7 @@ export default combineReducers({
     selectedMovie: movie,
     search: search,
     selectedActor: actor,
-    cast: cast
+    cast: cast,
+    error: error,
+    loading: loading,
 });

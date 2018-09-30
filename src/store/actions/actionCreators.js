@@ -9,34 +9,38 @@ export function saveMovieList(movies) {
     }
 }
 
-export const fetchMovies = () => {
-    console.log('[FetchingMovies]');
-
+export const fetchMovies = (params) => {
+    console.log('Fetching movies with params: ', params);
     return {
         type: 'FETCH_MOVIES',
-        payload: axios.get('/discover/movie/list')
+        payload: axios.get('/discover/movie', {params})
             .then(resp => {
                 return resp.data.results;
             })
     }
 }
 
+export const fetchMovie = (movieId) => {
+    return {
+        type: 'FETCH_MOVIE',
+        payload: axios.get('/movie/' + movieId)
+            .then(resp => {
+                return { movie: resp.data };
+            })
+    }
+}
+
 export function setMovies() {
     return (dispatch, getState) => {
-        //fetchMovies();
-        axios.get('/discover/movie', {
-            params: {
-                language: getState().search.language,
-                sort_by: getState().search.sortBy,
-                "vote_count.gte": getState().search.voteCount || 0,
-                page: getState().search.page,
-                "primary_release_date.gte": getState().search.releaseDate !== '---' ? getState().search.releaseDate : 1900,
-                with_genres: getState().search.withGenres || undefined,
-            }
-        })
-            .then(resp => {
-                dispatch(saveMovieList(resp.data.results))
-            })
+        let params = {
+            language: getState().search.language,
+            sort_by: getState().search.sortBy,
+            "vote_count.gte": getState().search.voteCount || 0,
+            page: getState().search.page,
+            "primary_release_date.gte": getState().search.releaseDate !== '---' ? getState().search.releaseDate : 1900,
+            with_genres: getState().search.withGenres || undefined,
+        }
+        dispatch(fetchMovies(params));
     }
 }
 
@@ -67,10 +71,7 @@ export function setSelectedMovie(movie) {
 
 export function setSelectedMovieThroughId(movieId) {
     return dispatch => {
-        axios.get('/movie/' + movieId)
-            .then(resp => {
-                dispatch(setSelectedMovie(resp.data))
-            })
+        dispatch(fetchMovie(movieId))
     }
 }
 

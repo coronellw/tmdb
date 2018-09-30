@@ -27,7 +27,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>React TMDB Example</h1>
+        <div>
+          <h1 className="MainTitle">TMDB API Example</h1>
+          <p className="MainText">An example of <span className="project">TMDB API</span> using <b>ReactJS</b> created by <span className="author">Wiston Coronell</span></p>
+        </div>
         <SearchControl />
         <Switch>
           <Route path="/" exact component={Movies} />

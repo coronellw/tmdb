@@ -1,12 +1,15 @@
 .Person {
-    width: 80%;
     margin: 0 auto;
     padding-top: 20px;
+    text-align: left;
+    width: 80%;
 }
 
 .Person h1 {
     background-color: rgba(125,125,125,.2);
     border-radius: 0 15px 15px 0;
+    font-family: 'Philosopher';
+    padding: 8px 0;
 }
 
 .Person label {
